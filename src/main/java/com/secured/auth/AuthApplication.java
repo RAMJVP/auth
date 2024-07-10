@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 public class AuthApplication {
 
 	public static void main(String[] args) {
-		System.out.println("222234.1");
 		SpringApplication.run(AuthApplication.class, args);
 	}
 

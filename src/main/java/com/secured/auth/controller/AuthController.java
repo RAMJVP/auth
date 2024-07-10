@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 import com.secured.auth.config.JwtUtil;
 import com.secured.auth.service.MyUserDetailsService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import com.secured.auth.model.AuthRequest;
 import com.secured.auth.model.AuthResponse;
 
@@ -26,6 +33,13 @@ public class AuthController {
 
     @Autowired
     private MyUserDetailsService userDetailsService;
+    
+    @Operation(summary = "Get all users")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Found the users",
+            content = @Content(mediaType = "application/json",
+            schema = @Schema(implementation = AuthResponse.class)))
+    })
 
     @PostMapping("/login")
     public AuthResponse createAuthenticationToken(@RequestBody AuthRequest authRequest) throws Exception {
